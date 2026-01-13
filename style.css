@@ -9,7 +9,7 @@
 
 body {
     background: #000000;
-    color: 	#A9A9A9;
+    color: 	#fff;
     padding-top: 100px;  /* adjust based on navbar height */
 }
 
@@ -99,7 +99,7 @@ nav ul li a:hover::after{
 
 --About Section--
 #about{
-    padding: 100px 0;
+    padding: 150px 0;
     color:#fff;
 }
 #about h1{
