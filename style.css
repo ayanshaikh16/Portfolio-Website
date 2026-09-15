@@ -1,48 +1,147 @@
+/* ==========================================================
+   Design tokens (your colors, kept in one place)
+   ========================================================== */
+:root {
+    --black: #000000;
+    --navy: #00008B;          /* your profile border blue */
+    --navy-hover: #1414b8;
+    --navy-bright: #4a5cff;   /* brighter blue for focus rings on black */
+    --red: #880808;           /* your nav underline red */
+    --white: #ffffff;
+    --muted: #b4b7cc;
+    --line: rgba(255, 255, 255, 0.14);
+    --header-h: 84px;
+}
 
-
-*{
+/* ==========================================================
+   Base
+   ========================================================== */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat', sans-serif;
     box-sizing: border-box;
 }
 
-body {
-    background: #000000;
-    color: 	#fff;
-    padding-top: 100px;  /* adjust based on navbar height */
+html {
+    scroll-behavior: smooth;
 }
 
+body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+}
+
+:focus-visible {
+    outline: 2px solid var(--navy-bright);
+    outline-offset: 4px;
+    border-radius: 2px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.skip-link {
+    position: absolute;
+    left: -999px;
+    top: 0;
+    background: var(--white);
+    color: var(--black);
+    padding: 8px 14px;
+    z-index: 2000;
+}
+
+.skip-link:focus {
+    left: 12px;
+    top: 12px;
+}
+
+/* Sections stop below the fixed navbar when you click a link */
+section {
+    scroll-margin-top: var(--header-h);
+}
+
+.section {
+    padding: 120px 0;
+}
+
+.section-title {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+}
+
+/* Shared red underline (same effect as your original nav) */
+.nav-menu a,
+.text-link,
+.contact-email {
+    position: relative;
+    text-decoration: none;
+}
+
+.nav-menu a::after,
+.text-link::after,
+.contact-email::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 3px;
+    background: var(--red);
+    transition: width 0.4s ease;
+}
+
+.nav-menu a:hover::after,
+.nav-menu a.active::after,
+.text-link:hover::after,
+.contact-email:hover::after {
+    width: 100%;
+}
+
+/* ==========================================================
+   Navbar
+   ========================================================== */
 #header {
-    position: fixed; 
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: #000000;
+    height: var(--header-h);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
     z-index: 1000;
-    padding: 10px 0;       /* was too large before */
 }
 
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 50px 0;
-    gap: 40px;
+#header.scrolled {
+    border-bottom-color: var(--line);
 }
 
-.profile-pic {
-    width: 350px;        /* adjust size */
-    height: 350px;
-    border-radius: 50%;  /* makes the image a perfect circle */
-    object-fit: cover;   /* crop the image cleanly inside the circle */
-    border: 4px solid #00008B; 
-    margin-right: 100px;
-
-}
-
-.container{
-    padding: 2px 5%;
+#header .container,
+nav {
+    height: 100%;
 }
 
 nav {
@@ -51,64 +150,414 @@ nav {
     justify-content: space-between;
 }
 
-.logo{
-    width: 90px;
+.logo img {
+    width: 64px;
+    height: auto;
 }
 
-nav ul li{
-    display: inline-block;
+.nav-menu {
+    display: flex;
+    gap: 34px;
     list-style: none;
-    margin: 5px 15px;
 }
 
-nav ul li a{
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    position: relative;
+.nav-menu a {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 6px 0;
 }
 
-nav ul li a::after{
-    content: '';
-    width: 0;
-    height: 3px;
-    background: #880808;
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    transition: 0.5s;
+.nav-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
 }
 
-nav ul li a:hover::after{
-    width: 100%;
-
+.nav-toggle span {
+    display: block;
+    height: 2px;
+    background: var(--white);
+    transition: transform 0.3s, opacity 0.3s;
 }
 
-.header-text{
-    margin-top: 30px;
-    font-size: 20px;
-}
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-.header-text h1{
-    font-size: 90px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-
-
---About Section--
-#about{
-    padding: 150px 0;
-    color:#fff;
-}
-#about h1{
-    text-align: center;
-    margin-top: 150 px;
-    
-}
-.row{
+/* ==========================================================
+   Hero
+   ========================================================== */
+.hero {
+    min-height: 100vh;
+    display: flex;
     align-items: center;
-    justify-content: space-between;
+    padding-top: var(--header-h);
+    overflow: hidden;
+}
+
+.hero-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero-greeting {
+    font-size: 1.25rem;
+    color: var(--muted);
+}
+
+.hero-name {
+    font-size: clamp(3.25rem, 8vw, 6.25rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin: 10px 0 22px;
+}
+
+.hero-role {
+    font-size: 1.375rem;
+    font-weight: 600;
+}
+
+.hero-summary {
+    max-width: 44ch;
+    color: var(--muted);
+    margin-top: 12px;
+}
+
+.hero-actions {
+    display: flex;
     flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 36px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 26px;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+
+.btn-primary {
+    background: var(--navy);
+    border-color: var(--navy);
+}
+
+.btn-primary:hover {
+    background: var(--navy-hover);
+    border-color: var(--navy-hover);
+}
+
+.btn-secondary {
+    border-color: var(--white);
+}
+
+.btn-secondary:hover {
+    background: var(--white);
+    color: var(--black);
+}
+
+/* Photo sits in the middle of the WebGL globe */
+.portrait {
+    position: relative;
+    width: min(540px, 100%);
+    aspect-ratio: 1 / 1;
+    justify-self: end;
+    display: grid;
+    place-items: center;
+}
+
+#hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.profile-pic {
+    position: relative;
+    width: 60%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--navy);
+}
+
+/* ==========================================================
+   About
+   ========================================================== */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.about-text p {
+    max-width: 62ch;
+    color: var(--muted);
+}
+
+.about-text p + p {
+    margin-top: 18px;
+}
+
+.about-text .lead {
+    font-size: 1.375rem;
+    line-height: 1.5;
+    font-weight: 600;
+    color: var(--white);
+}
+
+.facts {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 12px 32px;
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+}
+
+.facts dt {
+    color: var(--muted);
+}
+
+.facts dd {
+    font-weight: 600;
+}
+
+/* ==========================================================
+   Skills
+   ========================================================== */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+}
+
+.skill-group h3 {
+    font-size: 1.25rem;
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+    border-bottom: 3px solid var(--navy);
+}
+
+.skill-group ul {
+    list-style: none;
+}
+
+.skill-group li {
+    padding: 6px 0;
+    color: var(--muted);
+}
+
+/* ==========================================================
+   Projects
+   ========================================================== */
+.project-list {
+    list-style: none;
+    border-bottom: 1px solid var(--line);
+}
+
+.project {
+    display: grid;
+    grid-template-columns: 104px 1fr auto;
+    gap: 36px;
+    align-items: center;
+    padding: 40px 0;
+    border-top: 1px solid var(--line);
+}
+
+.project-logo {
+    width: 104px;
+    height: 104px;
+    padding: 14px;
+    object-fit: contain;
+    border: 2px solid var(--navy);
+    border-radius: 22px;
+    background: var(--black);
+}
+
+.project h3 {
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+}
+
+.project-body p {
+    max-width: 60ch;
+    color: var(--muted);
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+    list-style: none;
+}
+
+.tags li {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 4px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+}
+
+.project-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.text-link {
+    font-weight: 600;
+}
+
+/* ==========================================================
+   Contact + footer
+   ========================================================== */
+.contact-intro {
+    max-width: 52ch;
+    color: var(--muted);
+    margin: -24px 0 32px;
+}
+
+.contact-email {
+    display: inline-block;
+    font-size: clamp(1.5rem, 5vw, 3.25rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    word-break: break-word;
+}
+
+.contact-email::after {
+    height: 4px;
+    bottom: -6px;
+}
+
+.contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-top: 48px;
+    list-style: none;
+}
+
+.footer {
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.875rem;
+}
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+@media (max-width: 900px) {
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: var(--header-h);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        padding: 12px 5% 24px;
+        background: var(--black);
+        border-bottom: 1px solid var(--line);
+    }
+
+    .nav-menu.open {
+        display: flex;
+    }
+
+    .nav-menu a {
+        display: inline-block;
+        padding: 14px 0;
+        font-size: 1.125rem;
+    }
+
+    .hero {
+        padding-bottom: 60px;
+    }
+
+    .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .portrait {
+        order: -1;
+        width: min(380px, 90%);
+        justify-self: center;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .section {
+        padding: 90px 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .project {
+        grid-template-columns: 72px 1fr;
+        gap: 20px;
+        align-items: start;
+    }
+
+    .project-logo {
+        width: 72px;
+        height: 72px;
+        padding: 10px;
+        border-radius: 16px;
+    }
+
+    .project-links {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        gap: 24px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
 }
