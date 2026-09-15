@@ -1,22 +1,38 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Portfolio Website - Test</title>
+    <title>Your Name | Computer Science Portfolio</title>
+    <meta name="description" content="Portfolio of Your Name, a third-year computer science student. Projects, skills, and contact information.">
+
+    <!-- Montserrat font (your old CSS asked for it but it was never loaded) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Fixed NAVBAR ONLY -->
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- ===== NAVBAR ===== -->
     <header id="header">
         <div class="container">
-            <nav>
-                <img src="images/colored logo.png" class="logo">
-                <ul>
+            <nav aria-label="Main">
+                <a href="#home" class="logo">
+                    <!-- Rename "colored logo.png" to "colored-logo.png" (no spaces) -->
+                    <img src="images/colored-logo.png" alt="Your Name home">
+                </a>
+
+                <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+
+                <ul class="nav-menu" id="nav-menu">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -24,31 +40,177 @@
         </div>
     </header>
 
-    <!-- HERO / INTRO SECTION -->
-    <section id="home">
-        <div class="container">
-            <div class="header-container">
-                <div class="header-text">
-                    <p>Hello I'm</p>
-                    <h1>Ayan Shaikh</h1>
-                    <p>Third Year Computer Science Student</p>
+    <main id="main">
+        <!-- ===== HERO ===== -->
+        <section id="home" class="hero">
+            <div class="container hero-inner">
+                <div class="hero-text">
+                    <p class="hero-greeting">Hello, I'm</p>
+                    <h1 class="hero-name">Ayan Shaikh</h1>
+                    <p class="hero-role">Computer Science student at Wilfred Laurier University</p>
+                    <p class="hero-summary">
+                        I build web apps and interactive 3D experiences with React, Three.js, and WebGL.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">View my projects</a>
+                        <a href="resume.pdf" class="btn btn-secondary" download>Download resume</a>
+                    </div>
                 </div>
-                <img src="images/IMG_0543.jpg" class="profile-pic">
-            </div>
-        </div>
-    </section>
 
-    <!-- ABOUT SECTION -->
-    <section id="about">
+                <!-- WebGL globe renders on the canvas behind your photo -->
+                <div class="portrait">
+                    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+                    <img src="images/IMG_0543.jpg" class="profile-pic" alt="Portrait of Ayan Shaikh">
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ABOUT ===== -->
+        <section id="about" class="section">
+            <div class="container about-grid">
+                <h2 class="section-title">About me</h2>
+
+                <div class="about-text">
+                    <p class="lead">
+                        I'm a computer science student who likes turning ideas into things people can click, drag, and explore.
+                    </p>
+                    <p>
+                        Replace this with two or three sentences about yourself: what got you into programming,
+                        the kind of problems you enjoy solving, and what you're looking for next
+                        (for example, a summer internship in front-end or graphics development).
+                    </p>
+
+                    <dl class="facts">
+                        <dt>Studying</dt>
+                        <dd>Computer Science, Wilfrid Laurier University</dd>
+                        <dt>Graduating</dt>
+                        <dd>Spring 2028</dd>
+                        <dt>Looking for</dt>
+                        <dd>Internships and co-op roles</dd>
+                    </dl>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SKILLS ===== -->
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="section-title">Skills</h2>
+
+                <div class="skills-grid">
+                    <div class="skill-group">
+                        <h3>Languages</h3>
+                        <ul>
+                            <li>JavaScript</li>
+                            <li>Python</li>
+                            <li>Java</li>
+                            <li>HTML and CSS</li>
+                        </ul>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Frameworks and libraries</h3>
+                        <ul>
+                            <li>React</li>
+                            <li>Three.js</li>
+                            <li>WebGL</li>
+                            <li>Node.js</li>
+                        </ul>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Tools</h3>
+                        <ul>
+                            <li>Git and GitHub</li>
+                            <li>VS Code</li>
+                            <li>Figma</li>
+                            <li>Linux</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PROJECTS ===== -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+
+                <!-- Copy one <li class="project"> block per project -->
+                <ul class="project-list">
+                    <li class="project">
+                        <img class="project-logo" src="images/project-1-logo.png" alt="">
+                        <div class="project-body">
+                            <h3>Project name</h3>
+                            <p>One or two sentences on what it does and the problem it solves. Mention a result if you have one.</p>
+                            <ul class="tags" aria-label="Built with">
+                                <li>React</li>
+                                <li>Three.js</li>
+                            </ul>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="text-link">Live demo</a>
+                            <a href="#" class="text-link">Source code</a>
+                        </div>
+                    </li>
+
+                    <li class="project">
+                        <img class="project-logo" src="images/project-2-logo.png" alt="">
+                        <div class="project-body">
+                            <h3>Second project</h3>
+                            <p>Describe your part in it if it was a team project, and the hardest technical problem you solved.</p>
+                            <ul class="tags" aria-label="Built with">
+                                <li>Python</li>
+                                <li>Flask</li>
+                            </ul>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="text-link">Live demo</a>
+                            <a href="#" class="text-link">Source code</a>
+                        </div>
+                    </li>
+
+                    <li class="project">
+                        <img class="project-logo" src="images/project-3-logo.png" alt="">
+                        <div class="project-body">
+                            <h3>Third project</h3>
+                            <p>A class project, hackathon entry, or personal experiment works well here.</p>
+                            <ul class="tags" aria-label="Built with">
+                                <li>Java</li>
+                                <li>WebGL</li>
+                            </ul>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="text-link">Source code</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===== CONTACT ===== -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">Let's work together</h2>
+                <p class="contact-intro">I'm open to internships, co-op roles, and interesting side projects. Email is the fastest way to reach me.</p>
+
+                <a href="mailto:you@example.com" class="contact-email">you@example.com</a>
+
+                <ul class="contact-links">
+                    <li><a href="https://github.com/yourusername" class="text-link" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://linkedin.com/in/yourusername" class="text-link" target="_blank" rel="noopener">LinkedIn</a></li>
+                    <li><a href="resume.pdf" class="text-link" download>Resume (PDF)</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
         <div class="container">
-            <div class="row">
-                <h1>About Me</h1>
-                <p>dfjaakfjakjfajflkajklsklfjklajfklajfkagjahdoifa</p>
-            </div>
+            <p>&copy; <span id="year"></span> Ayan Shaikh</p>
         </div>
-    </section>
+    </footer>
 
+    <!-- Three.js (WebGL) from CDN, then your own script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
-
-
