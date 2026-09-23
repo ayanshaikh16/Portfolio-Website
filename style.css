@@ -2,14 +2,20 @@
    Design tokens (your colors, kept in one place)
    ========================================================== */
 :root {
-    --black: #000000;
-    --navy: #00008B;          /* your profile border blue */
-    --navy-hover: #1414b8;
-    --navy-bright: #4a5cff;   /* brighter blue for focus rings on black */
-    --red: #880808;           /* your nav underline red */
-    --white: #ffffff;
-    --muted: #b4b7cc;
-    --line: rgba(255, 255, 255, 0.14);
+    /* Night-match palette: deep navy pitch, club blue and garnet, a touch of gold */
+    --bg: #070a18;
+    --bg-raised: #0d1226;
+    --blue: #004d98;          /* button fill */
+    --blue-hover: #0a5fb8;
+    --blue-line: #1f63c6;     /* brighter blue for thin lines on dark */
+    --garnet: #a50044;
+    --gold: #edbb00;          /* used sparingly: focus rings and small details */
+    --white: #f5f6fa;
+    --muted: #a9b1cc;
+    --line: rgba(255, 255, 255, 0.12);
+    --stripes: repeating-linear-gradient(90deg, var(--blue-line) 0 7px, var(--garnet) 7px 14px);
+    --font-body: 'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-display: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif;
     --header-h: 84px;
 }
 
@@ -29,11 +35,25 @@ html {
 }
 
 body {
-    background: var(--black);
+    background: var(--bg);
     color: var(--white);
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-body);
     font-size: 1.0625rem;
     line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4,
+.hero-role {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.005em;
+}
+
+.job-dates,
+.school-dates,
+.course-code {
+    font-variant-numeric: tabular-nums;
 }
 
 img {
@@ -46,7 +66,7 @@ a {
 }
 
 :focus-visible {
-    outline: 2px solid var(--navy-bright);
+    outline: 2px solid var(--gold);
     outline-offset: 4px;
     border-radius: 2px;
 }
@@ -63,7 +83,7 @@ a {
     left: -999px;
     top: 0;
     background: var(--white);
-    color: var(--black);
+    color: var(--bg);
     padding: 8px 14px;
     z-index: 2000;
 }
@@ -83,14 +103,25 @@ section {
 }
 
 .section-title {
-    font-size: clamp(2.25rem, 5vw, 3.5rem);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 48px;
+    font-size: clamp(2.75rem, 6vw, 4.25rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0;
+    margin-bottom: 52px;
 }
 
-/* Shared red underline (same effect as your original nav) */
+/* Thin blue and garnet pinstripe under each section title */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 56px;
+    height: 5px;
+    margin-top: 18px;
+    background: var(--stripes);
+    border-radius: 1px;
+}
+
+/* Shared underline: half blue, half garnet */
 .nav-menu a,
 .text-link,
 .contact-email {
@@ -107,7 +138,7 @@ section {
     bottom: -4px;
     width: 0;
     height: 3px;
-    background: var(--red);
+    background: linear-gradient(90deg, var(--blue-line) 50%, var(--garnet) 50%);
     transition: width 0.4s ease;
 }
 
@@ -127,7 +158,7 @@ section {
     left: 0;
     width: 100%;
     height: var(--header-h);
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(7, 10, 24, 0.85);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid transparent;
@@ -211,20 +242,21 @@ nav {
 
 .hero-greeting {
     font-size: 1.25rem;
-    color: var(--muted);
+    font-weight: 500;
+    color: var(--gold);
 }
 
 .hero-name {
-    font-size: clamp(3.25rem, 8vw, 6.25rem);
-    font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    margin: 10px 0 22px;
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 700;
+    line-height: 0.88;
+    letter-spacing: -0.01em;
+    margin: 10px 0 24px;
 }
 
 .hero-role {
-    font-size: 1.375rem;
-    font-weight: 600;
+    font-size: 1.625rem;
+    line-height: 1.2;
 }
 
 .hero-summary {
@@ -242,6 +274,8 @@ nav {
 
 .btn {
     display: inline-block;
+    font-family: var(--font-body);
+    letter-spacing: 0.01em;
     padding: 14px 26px;
     border: 2px solid transparent;
     border-radius: 999px;
@@ -251,13 +285,13 @@ nav {
 }
 
 .btn-primary {
-    background: var(--navy);
-    border-color: var(--navy);
+    background: var(--blue);
+    border-color: var(--blue);
 }
 
 .btn-primary:hover {
-    background: var(--navy-hover);
-    border-color: var(--navy-hover);
+    background: var(--blue-hover);
+    border-color: var(--blue-hover);
 }
 
 .btn-secondary {
@@ -266,17 +300,33 @@ nav {
 
 .btn-secondary:hover {
     background: var(--white);
-    color: var(--black);
+    color: var(--bg);
 }
 
-/* Photo sits in the middle of the WebGL globe */
-.portrait {
+/* 3D ball sits in a faint centre circle, with the halfway line running through the hero */
+.hero-visual {
     position: relative;
     width: min(540px, 100%);
     aspect-ratio: 1 / 1;
     justify-self: end;
-    display: grid;
-    place-items: center;
+}
+
+.hero-visual::before {
+    content: '';
+    position: absolute;
+    inset: 9%;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+}
+
+.hero-visual::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -100vh;
+    bottom: -100vh;
+    width: 1px;
+    background: linear-gradient(transparent, var(--line) 35%, var(--line) 65%, transparent);
 }
 
 #hero-canvas {
@@ -284,15 +334,7 @@ nav {
     inset: 0;
     width: 100%;
     height: 100%;
-}
-
-.profile-pic {
-    position: relative;
-    width: 60%;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid var(--navy);
+    z-index: 1;
 }
 
 /* ==========================================================
@@ -348,10 +390,10 @@ nav {
 }
 
 .skill-group h3 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     padding-bottom: 12px;
     margin-bottom: 14px;
-    border-bottom: 3px solid var(--navy);
+    border-bottom: 3px solid var(--blue-line);
 }
 
 .skill-group ul {
@@ -385,13 +427,14 @@ nav {
     height: 104px;
     padding: 14px;
     object-fit: contain;
-    border: 2px solid var(--navy);
+    border: 2px solid var(--blue-line);
     border-radius: 22px;
-    background: var(--black);
+    background: var(--bg-raised);
 }
 
 .project h3 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+    line-height: 1.1;
     margin-bottom: 6px;
 }
 
@@ -427,6 +470,26 @@ nav {
     font-weight: 600;
 }
 
+/* Demo video sits under the description, lined up with the text column */
+.project {
+    row-gap: 28px;
+}
+
+.project-demo {
+    grid-column: 2 / -1;
+    max-width: 640px;
+}
+
+.project-demo video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: contain;
+    background: var(--bg);
+    border: 2px solid var(--blue-line);
+    border-radius: 14px;
+}
+
 /* ==========================================================
    Contact + footer
    ========================================================== */
@@ -438,9 +501,10 @@ nav {
 
 .contact-email {
     display: inline-block;
-    font-size: clamp(1.5rem, 5vw, 3.25rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 600;
+    letter-spacing: 0;
     word-break: break-word;
 }
 
@@ -481,7 +545,7 @@ nav {
         flex-direction: column;
         gap: 0;
         padding: 12px 5% 24px;
-        background: var(--black);
+        background: var(--bg);
         border-bottom: 1px solid var(--line);
     }
 
@@ -504,9 +568,9 @@ nav {
         gap: 12px;
     }
 
-    .portrait {
+    .hero-visual {
         order: -1;
-        width: min(380px, 90%);
+        width: min(340px, 80%);
         justify-self: center;
     }
 
@@ -548,6 +612,10 @@ nav {
         flex-direction: row;
         gap: 24px;
     }
+
+    .project-demo {
+        grid-column: 1 / -1;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -559,5 +627,200 @@ nav {
     *::before,
     *::after {
         transition: none !important;
+    }
+}
+
+/* ==========================================================
+   Experience
+   ========================================================== */
+.job {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 6px 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+}
+
+.job h3 {
+    font-size: 1.75rem;
+}
+
+.job-meta,
+.job-dates {
+    color: var(--muted);
+}
+
+.job-dates {
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.job-points {
+    grid-column: 1 / -1;
+    max-width: 70ch;
+    margin-top: 14px;
+    padding-left: 1.2em;
+    color: var(--muted);
+}
+
+.job-points li + li {
+    margin-top: 10px;
+}
+
+.job-points li::marker {
+    color: var(--garnet);
+}
+
+/* ==========================================================
+   Resume viewer
+   ========================================================== */
+.resume-dialog {
+    width: min(900px, calc(100% - 32px));
+    height: calc(100vh - 48px);
+    height: calc(100dvh - 48px);
+    max-width: none;
+    max-height: none;
+    margin: auto;
+    padding: 0;
+    border: 2px solid var(--blue-line);
+    border-radius: 16px;
+    background: var(--bg);
+    color: var(--white);
+    overflow: hidden;
+}
+
+.resume-dialog[open] {
+    display: flex;
+    flex-direction: column;
+}
+
+.resume-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+}
+
+html:has(.resume-dialog[open]) {
+    overflow: hidden;
+}
+
+.resume-dialog-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 12px 12px 22px;
+    border-bottom: 1px solid var(--line);
+}
+
+.resume-dialog-bar h2 {
+    font-size: 1.5rem;
+}
+
+.resume-dialog-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-small {
+    padding: 8px 18px;
+    font-size: 0.9375rem;
+}
+
+.resume-close {
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: none;
+    color: var(--white);
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.resume-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.resume-frame {
+    flex: 1;
+    width: 100%;
+    border: 0;
+    background: #525659; /* matches the browser's PDF viewer while it loads */
+}
+
+@media (max-width: 600px) {
+    .job {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================
+   Education
+   ========================================================== */
+.school {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 6px 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+}
+
+.school h3 {
+    font-size: 1.75rem;
+}
+
+.school-degree,
+.school-dates {
+    color: var(--muted);
+}
+
+.school-dates {
+    font-weight: 500;
+}
+
+.courses-title {
+    font-size: 1.625rem;
+    margin: 56px 0 24px;
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 48px;
+}
+
+.course-group h4 {
+    font-size: 1.375rem;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 3px solid var(--blue-line);
+}
+
+.course-group ul {
+    list-style: none;
+}
+
+.course-group li {
+    display: flex;
+    gap: 14px;
+    padding: 6px 0;
+    color: var(--muted);
+}
+
+.course-code {
+    flex: 0 0 6.5em;
+    color: var(--white);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .course-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
     }
 }
