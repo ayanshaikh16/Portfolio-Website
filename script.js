@@ -39,34 +39,32 @@ const sectionObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('main section').forEach((s) => sectionObserver.observe(s));
 
 // ==========================================================
-// Project demo videos
+// Project demo videos: hidden until "Watch demo" is clicked
 // ==========================================================
-const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+document.querySelectorAll('.demo-toggle').forEach((button) => {
+    const figure = document.getElementById(button.getAttribute('aria-controls'));
+    const video = figure && figure.querySelector('video');
+    if (!video) return;
 
-document.querySelectorAll('.project-demo video').forEach((video) => {
-    const figure = video.closest('.project-demo');
-    const hide = () => { figure.hidden = true; };
+    // No video file yet: hide the button so it never opens an empty player
+    const hideButton = () => { button.hidden = true; };
+    video.addEventListener('error', hideButton);
+    if (video.error || video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) hideButton();
 
-    // Hide the frame until you add the video file, instead of showing an empty box
-    video.addEventListener('error', hide);
-    if (video.error || video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) hide();
+    button.addEventListener('click', () => {
+        const opening = figure.hidden;
+        figure.hidden = !opening;
+        button.setAttribute('aria-expanded', String(opening));
+        button.textContent = opening ? 'Hide demo' : 'Watch demo';
 
-    // No autoplay for people who ask for reduced motion: give them play controls instead
-    if (reduceMotionQuery.matches) {
-        video.removeAttribute('autoplay');
-        video.pause();
-        video.controls = true;
-        return;
-    }
-
-    // Only play while on screen, to save battery and bandwidth
-    new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) {
-            video.play().catch(() => { video.controls = true; });
+        if (opening) {
+            video.currentTime = 0;
+            video.play().catch(() => {}); // controls are there if the browser blocks playback
         } else {
             video.pause();
         }
-    }).observe(video);
+    });
+
 });
 
 // ==========================================================
@@ -97,6 +95,13 @@ resumeDialog.querySelector('.resume-close').addEventListener('click', () => resu
 // Clicking the dark area outside the resume closes it
 resumeDialog.addEventListener('click', (e) => {
     if (e.target === resumeDialog) resumeDialog.close();
+});
+
+// Course counts next to each folded group, e.g. "3 courses"
+document.querySelectorAll('.course-group').forEach((group) => {
+    const n = group.querySelectorAll('li').length;
+    const label = group.querySelector('.course-count');
+    if (label) label.textContent = n === 1 ? '1 course' : n + ' courses';
 });
 
 // Footer year

@@ -33,8 +33,8 @@
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#education">Education</a></li>
-                    <li><a href="#experience">Experience</a></li>
                     <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="resume.pdf" class="js-open-resume" target="_blank" rel="noopener">Resume</a></li>
@@ -50,7 +50,7 @@
                 <div class="hero-text">
                     <p class="hero-greeting">Hello, I'm</p>
                     <h1 class="hero-name">Ayan Shaikh</h1>
-                    <p class="hero-role">Computer Science student at Wilfrid Laurier University</p>
+                    <p class="hero-role">Computer Science Student at Wilfrid Laurier University</p>
                     <p class="hero-summary">
                     </p>
                     <div class="hero-actions">
@@ -69,26 +69,31 @@
         <!-- ===== ABOUT ===== -->
         <section id="about" class="section">
             <div class="container about-grid">
-                <h2 class="section-title">About me</h2>
+                <h2 class="section-title">About Me</h2>
 
                 <div class="about-text">
                     <p class="lead">
-                        I'm a computer science student who likes turning ideas into things people can click, drag, and explore.
+                         I'm a Computer Science student who enjoys coding and solving problems, both in class and in my spare time.
                     </p>
                     <p>
-                        I'm studying for an Honours BSc in Computer Science with a minor in Economics at
-                        Wilfrid Laurier University. I like working close to the fundamentals, whether that's writing
-                        a 3D renderer without a graphics library, designing my own network protocol, or normalizing
-                        a database schema by hand.
+                        I'm studying Honours Computer Science with a minor in Economics at Wilfrid Laurier University.
+                        What I enjoy most is building things that solve problems in my own day-to-day life, then
+                        improving them until they're something other people could use too. 
+                    </p>
+                    <p>
+                        Outside of coding, I play just about every sport I can, especially soccer and hockey. The same
+                        things I love about team sports, like working together, reading the play, and staying calm under
+                        pressure, are what I bring to group projects. When I'm not playing, I'm usually catching up on
+                        a good show.
                     </p>
 
                     <dl class="facts">
                         <dt>Studying</dt>
                         <dd>Honours BSc, Computer Science, Economics Minor, Wilfrid Laurier University</dd>
                         <dt>Graduating</dt>
-                        <dd>Winter 2028</dd>
+                        <dd>Summer 2027</dd>
                         <dt>Looking for</dt>
-                        <dd>Computer Science Internships</dd>
+                        <dd>Software Engineering/Analyst Internships</dd>
                     </dl>
                 </div>
             </div>
@@ -104,45 +109,141 @@
                         <h3>Wilfrid Laurier University</h3>
                         <p class="school-degree">Honours BSc, Computer Science with an Economics Minor</p>
                     </div>
-                    <p class="school-dates">Expected graduation: Winter 2028</p>
+                    <p class="school-dates">Expected graduation: Summer 2027</p>
                 </div>
 
                 <h3 class="courses-title">Courses I've taken</h3>
 
                 <!-- Fill in your courses. Copy one <li> per course.
                      Put the course code in the <span>; leave the span out if you don't want codes.
-                     Rename, add, or remove groups to fit your courses. -->
+                     Each group starts folded; visitors click its title to open it.
+                     The course count next to each title updates by itself.
+                     To add a group, copy a whole <details> block and change the title. -->
                 <div class="course-grid">
-                    <div class="course-group">
-                        <h4>Computer Science</h4>
+                    <details class="course-group">
+                        <summary>
+                            <span class="course-group-title">Computer Science</span>
+                            <span class="course-count"></span>
+                            <span class="course-chevron" aria-hidden="true"></span>
+                        </summary>
                         <ul>
                             <li><span class="course-code">CODE 000</span> Course name</li>
                             <li><span class="course-code">CODE 000</span> Course name</li>
                             <li><span class="course-code">CODE 000</span> Course name</li>
                         </ul>
-                    </div>
-                    <div class="course-group">
-                        <h4>Math and statistics</h4>
+                    </details>
+                    <details class="course-group">
+                        <summary>
+                            <span class="course-group-title">Math and statistics</span>
+                            <span class="course-count"></span>
+                            <span class="course-chevron" aria-hidden="true"></span>
+                        </summary>
                         <ul>
                             <li><span class="course-code">CODE 000</span> Course name</li>
                             <li><span class="course-code">CODE 000</span> Course name</li>
                         </ul>
-                    </div>
-                    <div class="course-group">
-                        <h4>Economics</h4>
+                    </details>
+                    <details class="course-group">
+                        <summary>
+                            <span class="course-group-title">Economics</span>
+                            <span class="course-count"></span>
+                            <span class="course-chevron" aria-hidden="true"></span>
+                        </summary>
                         <ul>
                             <li><span class="course-code">CODE 000</span> Course name</li>
                             <li><span class="course-code">CODE 000</span> Course name</li>
                         </ul>
-                    </div>
-                    <div class="course-group">
-                        <h4>Electives</h4>
+                    </details>
+                    <details class="course-group">
+                        <summary>
+                            <span class="course-group-title">Electives</span>
+                            <span class="course-count"></span>
+                            <span class="course-chevron" aria-hidden="true"></span>
+                        </summary>
                         <ul>
                             <li><span class="course-code">CODE 000</span> Course name</li>
                             <li><span class="course-code">CODE 000</span> Course name</li>
                         </ul>
-                    </div>
+                    </details>
                 </div>
+            </div>
+        </section>
+
+        <!-- ===== PROJECTS ===== -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+
+                <!-- Copy one <li class="project"> block per project.
+                     The "Watch demo" button only shows once that project's video file exists. -->
+                <ul class="project-list">
+                    <li class="project">
+                        <img class="project-logo" src="images/3d-logo.jpg" alt="3D Render Engine Logo">
+                        <div class="project-body">
+                            <h3>3D render engine</h3>
+                            <p>A CPU-based 3D renderer written from scratch in Java, with no OpenGL or third-party graphics libraries. I implemented the full pipeline by hand: 3×3 matrix transformations, triangle rasterization, z-buffering, face normals, and gamma-corrected Lambert shading, with real-time camera controls in a Swing UI.</p>
+                            <ul class="tags" aria-label="Built with">
+                                <li>Java</li>
+                                <li>Swing</li>
+                                <li>Linear algebra</li>
+                            </ul>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ayanshaikh16/3D-Render-Engine" class="text-link" target="_blank" rel="noopener">Source code</a>
+                            <button type="button" class="text-link demo-toggle" aria-expanded="false" aria-controls="demo-1">Watch demo</button>
+                        </div>
+                        <!-- Demo video: save a 10-20 second MP4 as videos/renderer-demo.mp4 -->
+                        <figure class="project-demo" id="demo-1" hidden>
+                            <video src="videos/renderer-demo.mp4" muted playsinline controls preload="metadata"
+                                   aria-label="Demo of the 3D renderer: a shaded shape rotating as the camera controls move"></video>
+                        </figure>
+                    </li>
+
+                    <li class="project">
+                        <img class="project-logo" src="images/board-logo.webp" alt="">
+                        <div class="project-body">
+                            <h3>Client-server bulletin board</h3>
+                            <p>A multi-client bulletin board built on a threaded Java server, with a handler per client managing a shared board. I designed a custom application-layer protocol over TCP with structured responses and error codes, and built a Swing client that polls for updates so every connected user sees notes in sync.</p>
+                            <ul class="tags" aria-label="Built with">
+                                <li>Java</li>
+                                <li>TCP sockets</li>
+                                <li>Multithreading</li>
+                                <li>Swing</li>
+                            </ul>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ayanshaikh16/Client-Server-Bulletin-Board" class="text-link" target="_blank" rel="noopener">Source code</a>
+                            <button type="button" class="text-link demo-toggle" aria-expanded="false" aria-controls="demo-2">Watch demo</button>
+                        </div>
+                        <!-- Demo video: save a 10-20 second MP4 as videos/bulletin-board-demo.mp4 -->
+                        <figure class="project-demo" id="demo-2" hidden>
+                            <video src="videos/bulletin-board-demo.mp4" muted playsinline controls preload="metadata"
+                                   aria-label="Demo of the bulletin board: two clients posting and pinning notes on a shared board"></video>
+                        </figure>
+                    </li>
+
+                    <li class="project">
+                        <img class="project-logo" src="images/shoe-logo.jpg" alt="">
+                        <div class="project-body">
+                            <h3>SneakerHub</h3>
+                            <p>A responsive sneaker store with product pages, search filtering, a cart, and checkout. I handled sign-in, cart persistence, order placement, status updates, and order history entirely on the client with localStorage, using modular JavaScript and reusable UI components to keep shared state consistent.</p>
+                            <ul class="tags" aria-label="Built with">
+                                <li>JavaScript</li>
+                                <li>Tailwind CSS</li>
+                                <li>HTML</li>
+                            </ul>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ayanshaikh16/SneakerHub" class="text-link" target="_blank" rel="noopener">Source code</a>
+                            <button type="button" class="text-link demo-toggle" aria-expanded="false" aria-controls="demo-3">Watch demo</button>
+                        </div>
+                        <!-- Demo video: save a 10-20 second MP4 as videos/sneakerhub-demo.mp4 -->
+                        <figure class="project-demo" id="demo-3" hidden>
+                            <video src="videos/sneakerhub-demo.mp4" muted playsinline controls preload="metadata"
+                                   aria-label="Demo of SneakerHub: browsing sneakers, checking out, and tracking an order"></video>
+                        </figure>
+                    </li>
+                </ul>
             </div>
         </section>
 
@@ -166,104 +267,6 @@
             </div>
         </section>
 
-        <!-- ===== PROJECTS ===== -->
-        <section id="projects" class="section">
-            <div class="container">
-                <h2 class="section-title">Projects</h2>
-
-                <!-- Copy one <li class="project"> block per project.
-                     A demo video is hidden automatically until its file exists. -->
-                <ul class="project-list">
-                    <li class="project">
-                        <img class="project-logo" src="images/project-1-logo.png" alt="">
-                        <div class="project-body">
-                            <h3>3D render engine</h3>
-                            <p>A CPU-based 3D renderer written from scratch in Java, with no OpenGL or third-party graphics libraries. I implemented the full pipeline by hand: 3×3 matrix transformations, triangle rasterization, z-buffering, face normals, and gamma-corrected Lambert shading, with real-time camera controls in a Swing UI.</p>
-                            <ul class="tags" aria-label="Built with">
-                                <li>Java</li>
-                                <li>Swing</li>
-                                <li>Linear algebra</li>
-                            </ul>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/ayanshaikh16/3D-Render-Engine" class="text-link" target="_blank" rel="noopener">Source code</a>
-                        </div>
-                        <!-- Demo video: save a 10-20 second MP4 as videos/renderer-demo.mp4 -->
-                        <figure class="project-demo">
-                            <video src="videos/renderer-demo.mp4" autoplay muted loop playsinline preload="metadata"
-                                   aria-label="Demo of the 3D renderer: a shaded shape rotating as the camera controls move"></video>
-                        </figure>
-                    </li>
-
-                    <li class="project">
-                        <img class="project-logo" src="images/project-2-logo.png" alt="">
-                        <div class="project-body">
-                            <h3>Client-server bulletin board</h3>
-                            <p>A multi-client bulletin board built on a threaded Java server, with a handler per client managing a shared board. I designed a custom application-layer protocol over TCP with structured responses and error codes, and built a Swing client that polls for updates so every connected user sees notes in sync.</p>
-                            <ul class="tags" aria-label="Built with">
-                                <li>Java</li>
-                                <li>TCP sockets</li>
-                                <li>Multithreading</li>
-                                <li>Swing</li>
-                            </ul>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/ayanshaikh16/Client-Server-Bulletin-Board" class="text-link" target="_blank" rel="noopener">Source code</a>
-                        </div>
-                        <!-- Demo video: save a 10-20 second MP4 as videos/bulletin-board-demo.mp4 -->
-                        <figure class="project-demo">
-                            <video src="videos/bulletin-board-demo.mp4" autoplay muted loop playsinline preload="metadata"
-                                   aria-label="Demo of the bulletin board: two clients posting and pinning notes on a shared board"></video>
-                        </figure>
-                    </li>
-
-                    <li class="project">
-                        <img class="project-logo" src="images/project-3-logo.png" alt="">
-                        <div class="project-body">
-                            <h3>SneakerHub</h3>
-                            <p>A responsive sneaker store with product pages, search filtering, a cart, and checkout. I handled sign-in, cart persistence, order placement, status updates, and order history entirely on the client with localStorage, using modular JavaScript and reusable UI components to keep shared state consistent.</p>
-                            <ul class="tags" aria-label="Built with">
-                                <li>JavaScript</li>
-                                <li>Tailwind CSS</li>
-                                <li>HTML</li>
-                            </ul>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/ayanshaikh16/SneakerHub" class="text-link" target="_blank" rel="noopener">Source code</a>
-                        </div>
-                        <!-- Demo video: save a 10-20 second MP4 as videos/sneakerhub-demo.mp4 -->
-                        <figure class="project-demo">
-                            <video src="videos/sneakerhub-demo.mp4" autoplay muted loop playsinline preload="metadata"
-                                   aria-label="Demo of SneakerHub: browsing sneakers, checking out, and tracking an order"></video>
-                        </figure>
-                    </li>
-
-                    <li class="project">
-                        <img class="project-logo" src="images/project-4-logo.png" alt="">
-                        <div class="project-body">
-                            <h3>MMA database</h3>
-                            <p>A fully normalized (BCNF) relational database modelling fighters, events, fights, contracts, training camps, and sponsorships. I wrote 10 advanced SQL queries and 3 views using joins, subqueries, and window functions to analyze rankings and performance, then built a full-stack web app to query and visualize the data.</p>
-                            <ul class="tags" aria-label="Built with">
-                                <li>MySQL</li>
-                                <li>React</li>
-                                <li>Express</li>
-                                <li>Node.js</li>
-                            </ul>
-                        </div>
-                        <div class="project-links">
-                            <!-- Add a link here once the repo is public, e.g.
-                            <a href="https://github.com/ayanshaikh16/REPO-NAME" class="text-link" target="_blank" rel="noopener">Source code</a> -->
-                        </div>
-                        <!-- Demo video: save a 10-20 second MP4 as videos/mma-database-demo.mp4 -->
-                        <figure class="project-demo">
-                            <video src="videos/mma-database-demo.mp4" autoplay muted loop playsinline preload="metadata"
-                                   aria-label="Demo of the MMA database app: running queries and viewing fighter statistics"></video>
-                        </figure>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
         <!-- ===== SKILLS ===== -->
         <section id="skills" class="section">
             <div class="container">
@@ -271,20 +274,29 @@
 
                 <div class="skills-grid">
                     <div class="skill-group">
-                        <h3>Languages</h3>
-                        <ul>
+                        <div class="skill-head">
+                            <h3>Languages</h3>
+                            <span class="skill-count" aria-hidden="true">10</span>
+                        </div>
+                        <ul class="skill-chips">
                             <li>Java</li>
                             <li>Python</li>
                             <li>JavaScript</li>
-                            <li>C, C++, and C#</li>
+                            <li>C</li>
+                            <li>C++</li>
+                            <li>C#</li>
                             <li>SQL</li>
                             <li>Swift</li>
-                            <li>HTML and CSS</li>
+                            <li>HTML</li>
+                            <li>CSS</li>
                         </ul>
                     </div>
                     <div class="skill-group">
-                        <h3>Frameworks and libraries</h3>
-                        <ul>
+                        <div class="skill-head">
+                            <h3>Frameworks and libraries</h3>
+                            <span class="skill-count" aria-hidden="true">04</span>
+                        </div>
+                        <ul class="skill-chips">
                             <li>React</li>
                             <li>Node.js</li>
                             <li>Express</li>
@@ -292,11 +304,15 @@
                         </ul>
                     </div>
                     <div class="skill-group">
-                        <h3>Databases and tools</h3>
-                        <ul>
+                        <div class="skill-head">
+                            <h3>Databases and tools</h3>
+                            <span class="skill-count" aria-hidden="true">05</span>
+                        </div>
+                        <ul class="skill-chips">
                             <li>MySQL</li>
                             <li>MongoDB</li>
-                            <li>Git and GitHub</li>
+                            <li>Git</li>
+                            <li>GitHub</li>
                             <li>Microsoft Office</li>
                         </ul>
                     </div>

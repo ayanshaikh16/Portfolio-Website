@@ -99,7 +99,7 @@ section {
 }
 
 .section {
-    padding: 120px 0;
+    padding: 64px 0;
 }
 
 .section-title {
@@ -385,24 +385,80 @@ nav {
    ========================================================== */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 48px;
+    grid-template-columns: 1.4fr 1fr 1fr; /* Languages has the most chips, so it gets more room */
+    gap: 24px;
+}
+
+.skill-group {
+    position: relative;
+    padding: 30px 28px 32px;
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+}
+
+/* Pinstripe along the top edge of each card */
+.skill-group::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--stripes);
+    opacity: 0.85;
+}
+
+.skill-group:hover {
+    border-color: rgba(255, 255, 255, 0.22);
+    transform: translateY(-3px);
+}
+
+.skill-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 22px;
 }
 
 .skill-group h3 {
     font-size: 1.5rem;
-    padding-bottom: 12px;
-    margin-bottom: 14px;
-    border-bottom: 3px solid var(--blue-line);
+    line-height: 1.1;
 }
 
-.skill-group ul {
+.skill-count {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--muted);
+    opacity: 0.45;
+    font-variant-numeric: tabular-nums;
+}
+
+.skill-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     list-style: none;
 }
 
-.skill-group li {
-    padding: 6px 0;
-    color: var(--muted);
+.skill-chips li {
+    padding: 7px 16px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    transition: border-color 0.25s, background 0.25s;
+}
+
+.skill-chips li:hover {
+    border-color: var(--blue-line);
+    background: rgba(31, 99, 198, 0.16);
 }
 
 /* ==========================================================
@@ -468,6 +524,17 @@ nav {
 
 .text-link {
     font-weight: 600;
+}
+
+/* "Watch demo" is a button, styled to match the Source code link */
+button.text-link {
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 /* Demo video sits under the description, lined up with the text column */
@@ -583,15 +650,19 @@ nav {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .skill-group:first-child {
+        grid-column: 1 / -1;
+    }
+
     .section {
-        padding: 90px 0;
+        padding: 48px 0;
     }
 }
 
 @media (max-width: 600px) {
     .skills-grid {
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 18px;
     }
 
     .project {
@@ -784,24 +855,87 @@ html:has(.resume-dialog[open]) {
 
 .courses-title {
     font-size: 1.625rem;
-    margin: 56px 0 24px;
+    margin: 48px 0 8px;
 }
 
 .course-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 40px 48px;
+    gap: 16px 48px;
+    align-items: start;
 }
 
-.course-group h4 {
-    font-size: 1.375rem;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+/* Each group is a fold-out: click the title row to show its courses */
+.course-group summary {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 4px 14px 0;
     border-bottom: 3px solid var(--blue-line);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+}
+
+.course-group summary::-webkit-details-marker {
+    display: none;
+}
+
+.course-group-title {
+    flex: 1;
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.course-count {
+    color: var(--muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+}
+
+.course-chevron {
+    width: 10px;
+    height: 10px;
+    margin: 0 4px 4px;
+    border-right: 2px solid var(--white);
+    border-bottom: 2px solid var(--white);
+    transform: rotate(45deg);
+    transition: transform 0.3s ease, border-color 0.3s;
+}
+
+.course-group[open] .course-chevron {
+    transform: translateY(3px) rotate(-135deg);
+}
+
+.course-group summary:hover .course-chevron {
+    border-color: var(--gold);
+}
+
+.course-group summary:hover .course-group-title {
+    color: var(--white);
 }
 
 .course-group ul {
     list-style: none;
+    padding: 12px 0 8px;
+}
+
+/* Smooth open and close in browsers that support it; others just snap open */
+.course-group {
+    interpolate-size: allow-keywords;
+}
+
+.course-group::details-content {
+    height: 0;
+    overflow: clip;
+    transition: height 0.35s ease, content-visibility 0.35s allow-discrete;
+}
+
+.course-group[open]::details-content {
+    height: auto;
 }
 
 .course-group li {
@@ -821,6 +955,6 @@ html:has(.resume-dialog[open]) {
 @media (max-width: 600px) {
     .course-grid {
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 8px;
     }
 }
